@@ -12,7 +12,7 @@ services:
     ports:
       - "10012:10002"
       - "10013:10003"
-    image: corda/networkmap:2.0
+    image: corda/node:2.0
     container_name: notary
     volumes:
       - ./nodes/notary/corda-notary.conf:/opt/corda/node.conf
