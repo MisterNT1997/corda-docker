@@ -1,27 +1,6 @@
 version: "2"
 services:
-
-#  Notary:
-#    networks:
-#      - corda
-#    build:
-#      context: .
-#      args:
-#        BUILDTIME_CORDA_VERSION: 2.0.0
-#    env_file:
-#      - ./corda_docker.env
-#    ports:
-#      - "10002:10002"
-#      - "10003:10003"
-#      - "10004:10004"
-#    image: corda/node:2.0
-#    container_name: notary
-#    volumes:
-#      - ./nodes/notary/corda-notary.conf:/opt/corda/node.conf
-#      - ./plugins/:/opt/corda/plugins/
-#      - ./nodes/notary/certificates/:/opt/corda/certificates/
-
-  CordaNetworkMap:
+  CordaNotary:
     networks:
       - corda
     build:
@@ -34,9 +13,9 @@ services:
       - "10012:10002"
       - "10013:10003"
     image: corda/networkmap:2.0
-    container_name: networkmap
+    container_name: notary
     volumes:
-      - ./nodes/networkmap/corda-networkmap.conf:/opt/corda/node.conf
+      - ./nodes/notary/corda-notary.conf:/opt/corda/node.conf
 
   CordaNodeA:
     networks:
@@ -58,7 +37,7 @@ services:
       - ./plugins/:/opt/corda/plugins/
       - ./nodes/banka/certificates/:/opt/corda/certificates/
     depends_on:
-      - CordaNetworkMap
+      - CordaNotary
     restart: always
 
   CordaNodeB:
@@ -81,7 +60,7 @@ services:
       - ./plugins/:/opt/corda/plugins/
       - ./nodes/bankb/certificates/:/opt/corda/certificates/
     depends_on:
-      - CordaNetworkMap
+      - CordaNotary
     restart: always
 
   CordaNodeC:
@@ -104,7 +83,7 @@ services:
       - ./plugins/:/opt/corda/plugins/
       - ./nodes/bankc/certificates/:/opt/corda/certificates/
     depends_on:
-      - CordaNetworkMap
+      - CordaNotary
     restart: always
 
 
