@@ -3,3 +3,7 @@
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
 [._]sw[a-p]
+
+.idea
+.idea/workspace.xml
+.idea/libraries
