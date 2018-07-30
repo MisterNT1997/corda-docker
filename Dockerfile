@@ -1,3 +1,4 @@
+# Base Image from (https://hub.docker.com/r/xingle/corda-docker/tags/)
 # Base image from (http://phusion.github.io/baseimage-docker)
 FROM openjdk:8u171-jre-alpine
 
