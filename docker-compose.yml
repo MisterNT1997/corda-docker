@@ -1,4 +1,4 @@
-version: "2"
+version: "3.1"
 services:
   CordaNotary:
     networks:
@@ -6,16 +6,20 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 2.0.0
+        BUILDTIME_CORDA_VERSION: 3.1-corda
     env_file:
       - ./corda_docker.env
     ports:
-      - "10012:10002"
-      - "10013:10003"
-    image: corda/node:2.0
+      - "10006:10002"
+    image: corda/notary:3.1
     container_name: notary
     volumes:
       - ./nodes/notary/corda-notary.conf:/opt/corda/node.conf
+      - ./nodes/notary/certificates:/opt/corda/certificates/
+      - ./nodes/notary/network-parameters:/opt/corda/network-parameters
+      - ./nodeinfos/:/opt/corda/additional-node-infos
+      - ./dirvers/:/opt/corda/dirvers
+
 
   CordaNodeA:
     networks:
@@ -23,19 +27,23 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 2.0.0
+        BUILDTIME_CORDA_VERSION: 3.1-corda
     env_file:
       - ./corda_docker.env
     ports:
-      - "10022:10002"
-      - "10023:10003"
-      - "10024:10004"
-    image: corda/node:2.0
-    container_name: banka
+      - "10007:10002"
+      - "10008:10003"
+      - "10009:10004"
+      - "10048:10005"
+    image: corda/notary:3.1
+    container_name: partya
     volumes:
-      - ./nodes/banka/corda-banka.conf:/opt/corda/node.conf
-      - ./plugins/:/opt/corda/plugins/
-      - ./nodes/banka/certificates/:/opt/corda/certificates/
+      - ./nodes/partya/node.conf:/opt/corda/node.conf
+      - ./nodes/partya/network-parameters:/opt/corda/network-parameters
+      - ./cordapps/:/opt/corda/cordapps/
+      - ./nodes/partya/certificates/:/opt/corda/certificates/
+      - ./nodeinfos/:/opt/corda/additional-node-infos
+      - ./dirvers/:/opt/corda/dirvers
     depends_on:
       - CordaNotary
     restart: always
@@ -46,19 +54,23 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 2.0.0
+        BUILDTIME_CORDA_VERSION: 3.1-corda
     env_file:
       - ./corda_docker.env
     ports:
-      - "10032:10002"
-      - "10033:10003"
-      - "10034:10004"
-    image: corda/node:2.0
-    container_name: bankb
+      - "10010:10002"
+      - "10011:10003"
+      - "10012:10004"
+      - "10051:10005"
+    image: corda/notary:3.1
+    container_name: PartyB
     volumes:
-      - ./nodes/bankb/corda-bankb.conf:/opt/corda/node.conf
-      - ./plugins/:/opt/corda/plugins/
-      - ./nodes/bankb/certificates/:/opt/corda/certificates/
+      - ./nodes/PartyB/node.conf:/opt/corda/node.conf
+      - ./nodes/PartyB/network-parameters:/opt/corda/network-parameters
+      - ./cordapps/:/opt/corda/cordapps/
+      - ./nodes/PartyB/certificates/:/opt/corda/certificates/
+      - ./nodeinfos/:/opt/corda/additional-node-infos
+      - ./dirvers/:/opt/corda/dirvers
     depends_on:
       - CordaNotary
     restart: always
@@ -69,19 +81,23 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 2.0.0
+        BUILDTIME_CORDA_VERSION: 3.1-corda
     env_file:
       - ./corda_docker.env
     ports:
-      - "10042:10002"
-      - "10043:10003"
-      - "10044:10004"
-    image: corda/node:2.0
-    container_name: bankc
+      - "10013:10002"
+      - "10014:10003"
+      - "10015:10004"
+      - "10054:10005"
+    image: corda/notary:3.1
+    container_name: PartyC
     volumes:
-      - ./nodes/bankc/corda-bankc.conf:/opt/corda/node.conf
-      - ./plugins/:/opt/corda/plugins/
-      - ./nodes/bankc/certificates/:/opt/corda/certificates/
+      - ./nodes/PartyC/node.conf:/opt/corda/node.conf
+      - ./nodes/PartyC/network-parameters:/opt/corda/network-parameters
+      - ./cordapps/:/opt/corda/cordapps/
+      - ./nodes/PartyC/certificates/:/opt/corda/certificates/
+      - ./nodeinfos/:/opt/corda/additional-node-infos
+      - ./dirvers/:/opt/corda/dirvers
     depends_on:
       - CordaNotary
     restart: always

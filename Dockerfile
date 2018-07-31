@@ -3,8 +3,8 @@
 FROM openjdk:8u171-jre-alpine
 
 # Override default value with 'docker build --build-arg BUILDTIME_CORDA_VERSION=version'
-# example: 'docker build --build-arg BUILDTIME_CORDA_VERSION=2.0.0 -t corda/node:2.0 .'
-ARG BUILDTIME_CORDA_VERSION=2.0.0
+# example: 'docker build --build-arg BUILDTIME_CORDA_VERSION=3.1-corda -t corda/node:3.1 .'
+ARG BUILDTIME_CORDA_VERSION=3.2-corda
 ARG BUILDTIME_JAVA_OPTIONS
 
 ENV CORDA_VERSION=${BUILDTIME_CORDA_VERSION}
@@ -22,7 +22,6 @@ RUN apk upgrade --update && \
     addgroup corda && \
     adduser -G corda -D -s /bin/bash corda && \
     # Create /opt/corda directory && \
-    mkdir -p /opt/corda/plugins && \
     mkdir -p /opt/corda/logs
 
 # Copy corda jar
