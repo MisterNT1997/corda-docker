@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.2"
 services:
 
   Notary:
@@ -7,12 +7,12 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 3.1-corda
+        BUILDTIME_CORDA_VERSION: 3.2-corda
     env_file:
       - ./corda_docker.env
     ports:
       - "10012:10002"
-    image: corda/node:3.1
+    image: corda/node:3.2
     container_name: notary
     volumes:
       - ./nodes/notary/node.conf:/opt/corda/node.conf
@@ -27,14 +27,14 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 3.1-corda
+        BUILDTIME_CORDA_VERSION: 3.2-corda
     env_file:
       - ./corda_docker.env
     ports:
       - "10022:10002"
       - "10023:10003"
       - "10024:10004"
-    image: corda/node:3.1
+    image: corda/node:3.2
     container_name: banka
     volumes:
       - ./nodes/banka/node.conf:/opt/corda/node.conf
@@ -50,14 +50,14 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 3.1-corda
+        BUILDTIME_CORDA_VERSION: 3.2-corda
     env_file:
       - ./corda_docker.env
     ports:
       - "10032:10002"
       - "10033:10003"
       - "10034:10004"
-    image: corda/node:3.1
+    image: corda/node:3.2
     container_name: bankb
     volumes:
       - ./nodes/bankb/node.conf:/opt/corda/node.conf
@@ -73,14 +73,14 @@ services:
     build:
       context: .
       args:
-        BUILDTIME_CORDA_VERSION: 3.1-corda
+        BUILDTIME_CORDA_VERSION: 3.2-corda
     env_file:
       - ./corda_docker.env
     ports:
       - "10042:10002"
       - "10043:10003"
       - "10044:10004"
-    image: corda/node:3.1
+    image: corda/node:3.2
     container_name: bankc
     volumes:
       - ./nodes/bankc/node.conf:/opt/corda/node.conf
