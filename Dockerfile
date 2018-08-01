@@ -36,7 +36,7 @@ RUN chmod +x /run-corda.sh && \
 # Expose port for corda (default is 10002) and RPC
 EXPOSE 10002
 EXPOSE 10003
-#EXPOSE 10004
+EXPOSE 10004
 EXPOSE 10005
 
 # Working directory for Corda

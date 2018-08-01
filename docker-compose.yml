@@ -12,7 +12,7 @@ services:
       - ./corda_docker.env
     ports:
       - "10012:10002"
-    image: corda/notary:3.1
+    image: corda/node:3.1
     container_name: notary
     volumes:
       - ./nodes/notary/node.conf:/opt/corda/node.conf
