@@ -17,8 +17,8 @@ services:
     volumes:
       - ./nodes/notary/node.conf:/opt/corda/node.conf
       - ./nodes/notary/certificates/:/opt/corda/certificates/
-      - ./nodes/notary/network-parameters:/opt/corda/network-parameters
-      - ./nodes/notary/additional-node-infos/:/opt/corda/additional-node-infos
+      - ./nodes/network-parameters:/opt/corda/network-parameters
+      - ./nodes/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
   CordaNodeA:
@@ -38,10 +38,10 @@ services:
     container_name: banka
     volumes:
       - ./nodes/banka/node.conf:/opt/corda/node.conf
-      - ./nodes/banka/cordapps/:/opt/corda/cordapps/
       - ./nodes/banka/certificates/:/opt/corda/certificates/
-      - ./nodes/banka/network-parameters:/opt/corda/network-parameters
-      - ./nodes/banka/additional-node-infos/:/opt/corda/additional-node-infos
+      - ./nodes/cordapps/:/opt/corda/cordapps/
+      - ./nodes/network-parameters:/opt/corda/network-parameters
+      - ./nodes/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
   CordaNodeB:
@@ -61,10 +61,10 @@ services:
     container_name: bankb
     volumes:
       - ./nodes/bankb/node.conf:/opt/corda/node.conf
-      - ./nodes/bankb/cordapps/:/opt/corda/cordapps/
       - ./nodes/bankb/certificates/:/opt/corda/certificates/
-      - ./nodes/bankb/network-parameters:/opt/corda/network-parameters
-      - ./nodes/bankb/additional-node-infos/:/opt/corda/additional-node-infos
+      - ./nodes/cordapps/:/opt/corda/cordapps/
+      - ./nodes/network-parameters:/opt/corda/network-parameters
+      - ./nodes/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
   CordaNodeC:
@@ -84,10 +84,10 @@ services:
     container_name: bankc
     volumes:
       - ./nodes/bankc/node.conf:/opt/corda/node.conf
-      - ./nodes/bankc/cordapps/:/opt/corda/cordapps/
       - ./nodes/bankc/certificates/:/opt/corda/certificates/
-      - ./nodes/bankc/network-parameters:/opt/corda/network-parameters
-      - ./nodes/bankc/additional-node-infos/:/opt/corda/additional-node-infos
+      - ./nodes/cordapps/:/opt/corda/cordapps/
+      - ./nodes/network-parameters:/opt/corda/network-parameters
+      - ./nodes/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
 
