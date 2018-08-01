@@ -1,6 +1,7 @@
 version: "3.1"
 services:
-  CordaNotary:
+
+  Notary:
     networks:
       - corda
     build:
@@ -10,16 +11,15 @@ services:
     env_file:
       - ./corda_docker.env
     ports:
-      - "10006:10002"
+      - "10012:10002"
     image: corda/notary:3.1
     container_name: notary
     volumes:
-      - ./nodes/notary/corda-notary.conf:/opt/corda/node.conf
-      - ./nodes/notary/certificates:/opt/corda/certificates/
+      - ./nodes/notary/node.conf:/opt/corda/node.conf
+      - ./nodes/notary/certificates/:/opt/corda/certificates/
       - ./nodes/notary/network-parameters:/opt/corda/network-parameters
-      - ./nodeinfos/:/opt/corda/additional-node-infos
-      - ./dirvers/:/opt/corda/dirvers
-
+      - ./nodes/notary/additional-node-infos/:/opt/corda/additional-node-infos
+    restart: always
 
   CordaNodeA:
     networks:
@@ -31,21 +31,17 @@ services:
     env_file:
       - ./corda_docker.env
     ports:
-      - "10007:10002"
-      - "10008:10003"
-      - "10009:10004"
-      - "10048:10005"
-    image: corda/notary:3.1
-    container_name: partya
+      - "10022:10002"
+      - "10023:10003"
+      - "10024:10004"
+    image: corda/node:3.1
+    container_name: banka
     volumes:
-      - ./nodes/partya/node.conf:/opt/corda/node.conf
-      - ./nodes/partya/network-parameters:/opt/corda/network-parameters
-      - ./cordapps/:/opt/corda/cordapps/
-      - ./nodes/partya/certificates/:/opt/corda/certificates/
-      - ./nodeinfos/:/opt/corda/additional-node-infos
-      - ./dirvers/:/opt/corda/dirvers
-    depends_on:
-      - CordaNotary
+      - ./nodes/banka/node.conf:/opt/corda/node.conf
+      - ./nodes/banka/cordapps/:/opt/corda/cordapps/
+      - ./nodes/banka/certificates/:/opt/corda/certificates/
+      - ./nodes/banka/network-parameters:/opt/corda/network-parameters
+      - ./nodes/banka/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
   CordaNodeB:
@@ -58,21 +54,17 @@ services:
     env_file:
       - ./corda_docker.env
     ports:
-      - "10010:10002"
-      - "10011:10003"
-      - "10012:10004"
-      - "10051:10005"
-    image: corda/notary:3.1
-    container_name: PartyB
+      - "10032:10002"
+      - "10033:10003"
+      - "10034:10004"
+    image: corda/node:3.1
+    container_name: bankb
     volumes:
-      - ./nodes/PartyB/node.conf:/opt/corda/node.conf
-      - ./nodes/PartyB/network-parameters:/opt/corda/network-parameters
-      - ./cordapps/:/opt/corda/cordapps/
-      - ./nodes/PartyB/certificates/:/opt/corda/certificates/
-      - ./nodeinfos/:/opt/corda/additional-node-infos
-      - ./dirvers/:/opt/corda/dirvers
-    depends_on:
-      - CordaNotary
+      - ./nodes/bankb/node.conf:/opt/corda/node.conf
+      - ./nodes/bankb/cordapps/:/opt/corda/cordapps/
+      - ./nodes/bankb/certificates/:/opt/corda/certificates/
+      - ./nodes/bankb/network-parameters:/opt/corda/network-parameters
+      - ./nodes/bankb/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
   CordaNodeC:
@@ -85,21 +77,17 @@ services:
     env_file:
       - ./corda_docker.env
     ports:
-      - "10013:10002"
-      - "10014:10003"
-      - "10015:10004"
-      - "10054:10005"
-    image: corda/notary:3.1
-    container_name: PartyC
+      - "10042:10002"
+      - "10043:10003"
+      - "10044:10004"
+    image: corda/node:3.1
+    container_name: bankc
     volumes:
-      - ./nodes/PartyC/node.conf:/opt/corda/node.conf
-      - ./nodes/PartyC/network-parameters:/opt/corda/network-parameters
-      - ./cordapps/:/opt/corda/cordapps/
-      - ./nodes/PartyC/certificates/:/opt/corda/certificates/
-      - ./nodeinfos/:/opt/corda/additional-node-infos
-      - ./dirvers/:/opt/corda/dirvers
-    depends_on:
-      - CordaNotary
+      - ./nodes/bankc/node.conf:/opt/corda/node.conf
+      - ./nodes/bankc/cordapps/:/opt/corda/cordapps/
+      - ./nodes/bankc/certificates/:/opt/corda/certificates/
+      - ./nodes/bankc/network-parameters:/opt/corda/network-parameters
+      - ./nodes/bankc/additional-node-infos/:/opt/corda/additional-node-infos
     restart: always
 
 

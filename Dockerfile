@@ -4,7 +4,7 @@ FROM openjdk:8u171-jre-alpine
 
 # Override default value with 'docker build --build-arg BUILDTIME_CORDA_VERSION=version'
 # example: 'docker build --build-arg BUILDTIME_CORDA_VERSION=3.1-corda -t corda/node:3.1 .'
-ARG BUILDTIME_CORDA_VERSION=3.2-corda
+ARG BUILDTIME_CORDA_VERSION=3.1-corda
 ARG BUILDTIME_JAVA_OPTIONS
 
 ENV CORDA_VERSION=${BUILDTIME_CORDA_VERSION}
@@ -26,7 +26,7 @@ RUN apk upgrade --update && \
 
 # Copy corda jar
 ADD --chown=corda:corda https://dl.bintray.com/r3/corda/net/corda/corda/${CORDA_VERSION}/corda-${CORDA_VERSION}.jar                       /opt/corda/corda.jar
-ADD --chown=corda:corda https://dl.bintray.com/r3/corda/net/corda/corda-webserver/${CORDA_VERSION}/corda-webserver-${CORDA_VERSION}.jar   /opt/corda/corda-webserver.jar
+#ADD --chown=corda:corda https://dl.bintray.com/r3/corda/net/corda/corda-webserver/${CORDA_VERSION}/corda-webserver-${CORDA_VERSION}.jar   /opt/corda/corda-webserver.jar
 
 COPY run-corda.sh /run-corda.sh
 RUN chmod +x /run-corda.sh && \
@@ -36,7 +36,8 @@ RUN chmod +x /run-corda.sh && \
 # Expose port for corda (default is 10002) and RPC
 EXPOSE 10002
 EXPOSE 10003
-EXPOSE 10004
+#EXPOSE 10004
+EXPOSE 10005
 
 # Working directory for Corda
 WORKDIR /opt/corda
