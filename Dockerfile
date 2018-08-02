@@ -3,8 +3,8 @@
 FROM openjdk:8u171-jre-alpine
 
 # Override default value with 'docker build --build-arg BUILDTIME_CORDA_VERSION=version'
-# example: 'docker build --build-arg BUILDTIME_CORDA_VERSION=3.1-corda -t corda/node:3.1 .'
-ARG BUILDTIME_CORDA_VERSION=3.1-corda
+# example: 'docker build --build-arg BUILDTIME_CORDA_VERSION=3.2-corda -t corda/node:3.2 .'
+ARG BUILDTIME_CORDA_VERSION=3.2-corda
 ARG BUILDTIME_JAVA_OPTIONS
 
 ENV CORDA_VERSION=${BUILDTIME_CORDA_VERSION}
