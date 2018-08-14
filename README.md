@@ -8,14 +8,17 @@ The docker image is based on Alpine/OpenJDK (https://hub.docker.com/_/openjdk/)
 
 ## Usage (automatic way - using docker compose)
 
+Before start up the corda network containers, make sure the memory of docker is at least 3GiB.
+
 * Check Dockerfile and docker-compose.yml (e.g. to adjust version or exposed ports)
 * `docker-compose build` - to build base Corda images for Corda Node/Networkmap/Notary
-* `docker-compose up` - to spin up all Corda containers (Nodes + Networkmap + Notary)
+* `docker-compose up -d` - to spin up all Corda containers (Nodes + Networkmap + Notary)
 * `docker exec -it banka /bin/sh` - to log in to one of the running Node containers
 * `docker exec -it networkmap /bin/sh` - to log in to the running Networkmap container
+* `docker logs -f banka` - to see the logs of banka node 
 
 ## Corda configuration
-At the moment java options are put into **corda_docker.env**. All the others are in Dockerfile/docker_compose.yml
+At the moment java options are put into **corda-docker.env**. All the others are in docker-compose.yml
 
 If you need to modify Corda parameters (node or/and networkmap) change their configuration file(s) and restart container:
 ### For Corda node (i.e. banka):
@@ -29,6 +32,7 @@ If you need to modify Corda parameters (node or/and networkmap) change their con
 In your web browser open:
 * `http://localhost:10024` (for banka)
 * `http://localhost:10034` (for bankb)
+* `http://localhost:10044` (for bankc)
 
 etc
 
