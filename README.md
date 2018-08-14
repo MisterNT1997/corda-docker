@@ -8,7 +8,7 @@ The docker image is based on Alpine/OpenJDK (https://hub.docker.com/_/openjdk/)
 
 ## Usage (automatic way - using docker compose)
 
-Before start up the corda network containers, make sure the memory of docker is at least 3GiB.
+Before start up the corda network containers, make sure the memory of docker is at least 3GiB. Read more in the Issues section.
 
 * Check Dockerfile and docker-compose.yml (e.g. to adjust version or exposed ports)
 * `docker-compose build` - to build base Corda images for Corda Node/Networkmap/Notary
@@ -39,8 +39,10 @@ etc
 ## Issues
 If you get the following message: `<containername> exited with code 137` it's likely because the Linux OOM killer is getting triggered inside of running Docker instance.
 Please adjust memory size for Docker environment:
-On MacOS: https://docs.docker.com/docker-for-mac/#memory
-On Windows: https://docs.docker.com/docker-for-windows/#advanced
+
+- On MacOS: https://docs.docker.com/docker-for-mac/#memory
+
+- On Windows: https://docs.docker.com/docker-for-windows/#advanced
 
 ## TODO
 * add more to README.md (how to customise the build, potential manual spin up without docker compose) 
